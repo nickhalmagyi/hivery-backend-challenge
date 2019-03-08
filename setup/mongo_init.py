@@ -37,11 +37,18 @@ def process_food(collection_people):
         collection_people.update_one({"_id": person["_id"]}, {"$set": {PEOPLE_FAVORITE_VEGETABLE_COLNAME: vegs}})
 
 
-def load_data_to_mongo():
-    client = MongoClient(HOST_NAME, PORT_NAME)
-    db = client[DB_NAME]
+def load_data_to_mongo(db_name=DB_NAME,
+                       host_name=HOST_NAME,
+                       port_name=PORT_NAME,
+                       companies_collection_name=COMPANIES_COLLECTION_NAME,
+                       companies_json_path=COMPANIES_JSON_PATH,
+                       people_collection_name=PEOPLE_COLLECTION_NAME,
+                       people_json_path=PEOPLE_JSON_PATH):
 
-    init_collection(db, COMPANIES_COLLECTION_NAME, COMPANIES_JSON_PATH)
-    init_collection(db, PEOPLE_COLLECTION_NAME, PEOPLE_JSON_PATH)
+    client = MongoClient(host_name, port_name)
+    db = client[db_name]
+
+    init_collection(db, companies_collection_name, companies_json_path)
+    init_collection(db, people_collection_name, people_json_path)
 
     process_food(db[PEOPLE_COLLECTION_NAME])
