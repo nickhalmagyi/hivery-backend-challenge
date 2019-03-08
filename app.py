@@ -21,6 +21,9 @@ def create_app():
 
     @app.route('/get_employees', methods=['GET'])
     def get_employees():
+        """
+        :return: all employees of a given company
+        """
         company_index = request.args.get('company_index')
         company_index = validate_integer_index(company_index)
 
@@ -32,6 +35,9 @@ def create_app():
 
     @app.route('/get_friends', methods=['GET'])
     def get_friends():
+        """
+        :return: common friends between person_index_1 and person_index_2, who are alive and brown-eyed.
+        """
         person_index_1 = validate_integer_index(request.args.get('person_index_1'))
         person_index_2 = validate_integer_index(request.args.get('person_index_2'))
         common_friends = CommonFriends(collection_people, person_index_1, person_index_2)
@@ -40,7 +46,10 @@ def create_app():
 
 
     @app.route('/get_fruit_veg', methods=['GET'])
-    def get_fruits():
+    def get_fruit_veg():
+        """
+        :return: name, age, favorite fruits and vegetables of person_index
+        """
         person_index = validate_integer_index(request.args.get('person_index'))
         fruit_veg = FruitVeg(collection_people, person_index)
         favorite_fruit_veg = fruit_veg.get_favorite_fruit_veg(collection_people, person_index)
