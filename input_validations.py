@@ -7,4 +7,5 @@ def validate_integer_index(index):
         index = int(index)
     except ValueError:
         raise ValidationError("Input must be an integer")
-    return index
+    else:
+        return index

@@ -2,7 +2,7 @@ import os
 
 DEBUG = True
 
-DATA_DIR_TEST = "tests/resources"
+DATA_DIR_TEST = "tests/test_resources"
 
 DB_NAME_TEST = 'hivery_test'
 HOST_NAME_TEST  = 'localhost'
@@ -43,3 +43,11 @@ FRUIT_LIST = ['apple', 'banana', 'orange', 'strawberry']
 VEG_LIST = ['beetroot', 'carrot', 'celery', 'cucumber']
 
 PEOPLE_USERNAME_COLNAME = 'username'
+
+FRUIT_VEG_KEYS = [PEOPLE_NAME_COLNAME, PEOPLE_AGE_COLNAME,
+                 PEOPLE_FAVORITE_FRUIT_COLNAME, PEOPLE_FAVORITE_VEGETABLE_COLNAME]
+
+FRUIT_VEG_KEYS_OUT = [PEOPLE_USERNAME_COLNAME, PEOPLE_AGE_COLNAME,
+                     PEOPLE_FAVORITE_FRUIT_COLNAME, PEOPLE_FAVORITE_VEGETABLE_COLNAME]
+
+FRUIT_VEG_KEYS_MAP = dict(zip(FRUIT_VEG_KEYS, FRUIT_VEG_KEYS_OUT))

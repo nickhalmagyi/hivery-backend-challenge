@@ -3,10 +3,10 @@ import json
 from flask import Flask, request
 from pymongo import MongoClient
 
+from input_validations import validate_integer_index
 from endpoints.get_employees import Employees
 from endpoints.get_friends import CommonFriends
 from endpoints.get_favorite_fruit_veg import FruitVeg
-from endpoints.input_validations import validate_integer_index
 from settings import DEBUG, HOST_NAME, PORT_NAME, DB_NAME, COMPANIES_COLLECTION_NAME, PEOPLE_COLLECTION_NAME
 
 

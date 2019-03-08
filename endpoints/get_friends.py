@@ -1,4 +1,4 @@
-from endpoints.input_validations import ValidationError
+from input_validations import ValidationError
 
 from settings import PEOPLE_FRIENDS_COLNAME, PEOPLE_NAME_COLNAME, \
     PEOPLE_INDEX_COLNAME, FRIENDS_INDEX_COLNAME, PEOPLE_EYECOLOR_COLNAME, BROWN_EYECOLOR, \

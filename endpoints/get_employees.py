@@ -1,5 +1,5 @@
 from settings import COMPANY_NAME_COLNAME, COMPANY_INDEX_COLNAME, PEOPLE_COMPANYID_COLNAME
-from endpoints.input_validations import ValidationError
+from input_validations import ValidationError
 
 
 class Employees:
@@ -21,10 +21,8 @@ class Employees:
     def get_all_employees(self, collection_companies, collection_people, company_index):
 
         company = self._get_company(collection_companies, company_index)
-
         employees = []
         for person in collection_people.find(company):
-            print(person['name'], ": ", person[PEOPLE_COMPANYID_COLNAME])
             employees.append(person)
         employees = [{'employee_count': len(employees)}] + employees
 

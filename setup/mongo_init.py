@@ -51,4 +51,4 @@ def load_data_to_mongo(db_name=DB_NAME,
     init_collection(db, companies_collection_name, companies_json_path)
     init_collection(db, people_collection_name, people_json_path)
 
-    process_food(db[PEOPLE_COLLECTION_NAME])
+    process_food(db[people_collection_name])
