@@ -1,11 +1,11 @@
-from settings import COMPANY_NAME_COLNAME, COMPANY_INDEX_COLNNAME, COMPANY_ID_COLNAME
+from settings import COMPANY_NAME_COLNAME, COMPANY_INDEX_COLNAME, COMPANY_ID_COLNAME
 
 
-def get_company(collection_companies, company_name):
-    company = collection_companies.find({COMPANY_NAME_COLNAME: company_name})
+def get_company(collection_companies, company_index):
+    company = collection_companies.find({COMPANY_INDEX_COLNAME: company_index})
     if company:
         for comp in company:
-            return {COMPANY_ID_COLNAME: comp[COMPANY_INDEX_COLNNAME]}
+            return {COMPANY_ID_COLNAME: comp[COMPANY_INDEX_COLNAME]}
         else:
             return {'Error': 'Company name {} does not exist.'.format(company_name)}
 

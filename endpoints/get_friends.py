@@ -1,12 +1,9 @@
-from endpoints.validations import validate_index
-
 from settings import PEOPLE_FRIENDS_COLNAME, PEOPLE_NAME_COLNAME, \
     PEOPLE_INDEX_COLNAME, FRIENDS_INDEX_COLNAME, PEOPLE_EYECOLOR_COLNAME, BROWN_EYECOLOR, \
     PEOPLE_HAS_DIED_COLNAME, PEOPLE_AGE_COLNAME, PEOPLE_ADDRESS_COLNAME, PEOPLE_PHONE_COLNAME
 
 
 def get_friends(collection_people, person_index):
-    person_index = validate_index(person_index)
     for person in collection_people.find({PEOPLE_INDEX_COLNAME: person_index}):
         friends = [friend[FRIENDS_INDEX_COLNAME] for friend in person[PEOPLE_FRIENDS_COLNAME]]
         return friends

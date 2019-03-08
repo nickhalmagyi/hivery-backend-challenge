@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from endpoints.get_employees import get_all_employees
 from endpoints.get_friends import get_common_friends, person_has_brown_eyes_and_is_alive, get_name_age_address_phone
 from endpoints.get_favorite_fruit_veg import get_favorite_fruit_veg
-from endpoints.validations import validate_index
+from endpoints.validations import validate_person_index, validate_company_index
 from settings import DEBUG, HOST_NAME, PORT_NAME, DB_NAME, COMPANIES_COLLECTION_NAME, PEOPLE_COLLECTION_NAME
 
 
@@ -25,15 +25,16 @@ def create_app():
 
     @app.route('/get_employees', methods=['GET'])
     def get_employees():
-        company_name = request.args.get('company_name').upper()
-        employees = get_all_employees(collection_companies, collection_people, company_name)
+        company_index = request.args.get('company_index')
+        company_index = validate_company_index(collection_companies, company_index)
+        employees = get_all_employees(collection_companies, collection_people, company_index)
         return json.dumps(employees)
 
 
     @app.route('/get_friends', methods=['GET'])
     def get_friends():
-        person_index_1 = validate_index(collection_people, request.args.get('person_index_1'))
-        person_index_2 = validate_index(collection_people, request.args.get('person_index_2'))
+        person_index_1 = validate_person_index(collection_people, request.args.get('person_index_1'))
+        person_index_2 = validate_person_index(collection_people, request.args.get('person_index_2'))
 
         common_friends_indices = get_common_friends(collection_people, person_index_1, person_index_2)
         common_friends_with_brown_eyes_and_is_alive = [friend for friend in common_friends_indices
@@ -44,7 +45,7 @@ def create_app():
 
     @app.route('/get_fruit_veg', methods=['GET'])
     def get_fruits():
-        person_index = validate_index(collection_people, request.args.get('person_index'))
+        person_index = validate_person_index(collection_people, request.args.get('person_index'))
         fave_fruit_veg = get_favorite_fruit_veg(collection_people, person_index)
         return json.dumps(fave_fruit_veg)
 
