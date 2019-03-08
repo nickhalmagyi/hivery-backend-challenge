@@ -1,0 +1,10 @@
+import os
+
+
+TEST_DATA_DIR = "resources"
+
+TEST_COMPANIES_JSON_FNAME = "companies_test.json"
+TEST_COMPANIES_JSON_PATH = os.path.join(TEST_DATA_DIR, TEST_COMPANIES_JSON_FNAME)
+
+TEST_PEOPLE_JSON_FNAME = "people_test.json"
+TEST_PEOPLE_JSON_PATH = os.path.join(TEST_DATA_DIR, TEST_PEOPLE_JSON_FNAME)
