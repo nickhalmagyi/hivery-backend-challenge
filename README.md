@@ -3,7 +3,7 @@
 In addition to Mongodb and Python3, the Dependencies are in setup/requirements.txt.
 Running
 
-python3 setup.py  
+python3 setup.py
 
 will update pip, install python dependencies and load the data into mongodb.
 In addition it will perform some preprocessing on the database, adding field "fruits" and "vegetables".
@@ -18,11 +18,11 @@ Only the files in resources named companies.json and people.json are loaded into
 
 Examples of the three endpoints are as follows:
 
-http://127.0.0.1:5000/get_employees?company_index=1
+http://localhost:5000/get_employees?company_index=1
 
-http://127.0.0.1:5000/get_friends?person_index_1=5&person_index_2=2
+http://localhost:5000/get_friends?person_index_1=5&person_index_2=2
 
-http://127.0.0.1:5000/get_fruit_veg?person_index=7
+http://localhost:5000/get_fruit_veg?person_index=7
 
 They all use company/person indices are the parameters, which have been checked to be unique. New files
 uploaded should also have unique indices for both companies and people.
