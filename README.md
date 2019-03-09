@@ -27,7 +27,8 @@ http://localhost:5000/get_fruit_veg?person_index=7
 They all use company/person indices are the parameters, which have been checked to be unique. New files
 uploaded should also have unique indices for both companies and people.
 
-If the value of an argument in the query string is non-integer or is not found in the db, a custom ValidationError is thrown.
+If the value of an argument in the query string is non-integer or is not found in the db,
+a json-dict is returned with "errors": True.  
 
 The endpoint get_employees contains a field "employee_count" which serves as a check on the number of employees
 returned in json format. When there are no employees in the given company, one will find the output
