@@ -1,4 +1,4 @@
-from input_validations import ValidationError
+# from input_validations import ValidationError
 
 from settings import PEOPLE_FRIENDS_COLNAME, PEOPLE_NAME_COLNAME, \
     PEOPLE_INDEX_COLNAME, FRIENDS_INDEX_COLNAME, PEOPLE_EYECOLOR_COLNAME, BROWN_EYECOLOR, \
@@ -7,20 +7,15 @@ from settings import PEOPLE_FRIENDS_COLNAME, PEOPLE_NAME_COLNAME, \
 
 class CommonFriends:
     def __init__(self, collection_people, person_index_1, person_index_2):
-        self._validate_person_index_exists(collection_people, person_index_1)
-        self._validate_person_index_exists(collection_people, person_index_2)
+        self.errors = {"errors": False}
+        self._validate_person_index_exists("person_index_1", collection_people, person_index_1, PEOPLE_INDEX_COLNAME)
+        self._validate_person_index_exists("person_index_2", collection_people, person_index_2, PEOPLE_INDEX_COLNAME)
 
 
-    def _validate_person_index_exists(self, collection_people, person_index):
-        """
-        :param collection_people: mongodb collection
-        :param person_index: integer, the index of an entry in the peoples collection
-        :return: raises error if person_index does not exist otherwise pass
-        """
-        if collection_people.count_documents({PEOPLE_INDEX_COLNAME: person_index}) == 0:
-            raise ValidationError("The person_index {} does not exist.".format(person_index))
-        else:
-            pass
+    def _validate_person_index_exists(self, index_name, collection, index, index_colname):
+        if collection.count_documents({index_colname: index}) == 0:
+            self.errors["errors"] = True
+            self.errors.update({index_name : ["The index {} was not found.".format(index)]})
 
 
     def _get_common_friends(self, collection_people, person_index_1, person_index_2):

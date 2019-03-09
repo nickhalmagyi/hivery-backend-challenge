@@ -1,15 +1,16 @@
 from settings import COMPANY_NAME_COLNAME, COMPANY_INDEX_COLNAME, PEOPLE_COMPANYID_COLNAME
-from input_validations import ValidationError
 
 
 class Employees:
     def __init__(self, collection_companies, company_index):
-        self._validate_company_exists(collection_companies, company_index)
+        self.errors = {"errors": False}
+        self._validate_company_exists("company_index", collection_companies, company_index, COMPANY_INDEX_COLNAME)
 
-    def _validate_company_exists(self, collection_companies, company_index):
-        if collection_companies.count_documents({COMPANY_INDEX_COLNAME: company_index}) == 0:
-            raise ValidationError("The company_index {} does not exist.".format(company_index))
 
+    def _validate_company_exists(self, index_name, collection, index, index_colname):
+        if collection.count_documents({index_colname: index}) == 0:
+            self.errors["errors"] = True
+            self.errors.update({index_name : ["The index {} was not found.".format(index)]})
 
     def _get_company(self, collection_companies, company_index):
 
