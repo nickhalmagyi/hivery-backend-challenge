@@ -3,7 +3,7 @@ import json
 from flask import Flask, request
 from pymongo import MongoClient
 
-from input_validations import GetEmployeesForm, GetFriendsForm, GetFruitVegForm
+from forms import GetEmployeesForm, GetFriendsForm, GetFruitVegForm
 from endpoints.get_employees import Employees
 from endpoints.get_friends import CommonFriends
 from endpoints.get_favorite_fruit_veg import FruitVeg
@@ -32,7 +32,7 @@ def create_app():
         company_index = form.data.get('company_index')
 
         employees = Employees(collection_companies, company_index)
-        if employees.errors != []:
+        if employees.errors['errors'] == True:
             return json.dumps(employees.errors)
         employees = employees.get_all_employees(collection_companies, collection_people, company_index)
         return json.dumps(employees)
@@ -52,7 +52,7 @@ def create_app():
         person_index_2 = form.data.get('person_index_2')
 
         common_friends = CommonFriends(collection_people, person_index_1, person_index_2)
-        if common_friends.errors != []:
+        if common_friends.errors['errors'] == True:
             return json.dumps(common_friends.errors)
 
         friends_details = common_friends.get_friends_details(collection_people, person_index_1, person_index_2)
@@ -72,7 +72,7 @@ def create_app():
         person_index = form.data.get('person_index')
 
         fruit_veg = FruitVeg(collection_people, person_index)
-        if fruit_veg.errors != []:
+        if fruit_veg.errors['errors'] == True:
             return json.dumps(fruit_veg.errors)
         favorite_fruit_veg = fruit_veg.get_favorite_fruit_veg(collection_people, person_index)
         return json.dumps(favorite_fruit_veg)
