@@ -1,0 +1,59 @@
+[
+  {
+    "_id": "595eeb9b96d80a5bc7afb106",
+    "index": 0,
+    "has_died": true,
+    "age": 61,
+    "eyeColor": "blue",
+    "name": "Carmella Lambert",
+    "company_id": 0,
+    "email": "carmellalambert@earthmark.com",
+    "phone": "+1 (910) 567-3630",
+    "address": "628 Sumner Place, Sperryville, American Samoa, 9819",
+    "friends": [
+      {
+        "index": 0
+      },
+      {
+        "index": 1
+      },
+      {
+        "index": 2
+      }
+    ],
+    "favouriteFood": [
+      "orange",
+      "apple",
+      "banana",
+      "strawberry"
+    ]
+  },
+  {
+    "_id": "595eeb9b1e0d8942524c98ad",
+    "index": 1,
+    "has_died": false,
+    "age": 60,
+    "eyeColor": "brown",
+    "name": "Decker Mckenzie",
+    "company_id": 98,
+    "phone": "+1 (893) 587-3311",
+    "address": "492 Stockton Street, Lawrence, Guam, 4854",
+    "friends": [
+      {
+        "index": 0
+      },
+      {
+        "index": 1
+      },
+      {
+        "index": 2
+      }
+    ],
+    "favouriteFood": [
+      "cucumber",
+      "beetroot",
+      "carrot",
+      "celery"
+    ]
+  }
+]
